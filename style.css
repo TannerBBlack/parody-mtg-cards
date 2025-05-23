@@ -1,0 +1,4 @@
+body { font-family: 'Segoe UI', sans-serif; padding: 2rem; background: #f0f0f0; }
+.card { border: 1px solid #aaa; background: #fff; padding: 1rem; margin: 1rem; border-radius: 8px; width: 250px; display: inline-block; }
+.card input { margin-right: 0.5rem; }
+button { padding: 1rem; font-size: 1rem; background: #222; color: #fff; border: none; cursor: pointer; }
