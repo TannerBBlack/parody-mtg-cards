@@ -51,15 +51,29 @@ async function searchCard() {
   }
 }
 
-function addToPrint(name, imgSrc) {
+function addToPrint(name, image) {
   const container = document.getElementById("selected-cards");
-  const cardDiv = document.createElement("div");
-  cardDiv.className = "print-card";
-  cardDiv.innerHTML = `
-    <h4>${name}</h4>
-    <img src="${imgSrc}" alt="${name}" width="200">
-  `;
-  container.appendChild(cardDiv);
+
+  const printCard = document.createElement("div");
+  printCard.className = "minimal-card";
+
+  // Use Scryfall again to get full card text (ensure minimal template has everything)
+  fetch(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(name)}`)
+    .then(res => res.json())
+    .then(card => {
+      printCard.innerHTML = `
+        <div class="card-outline">
+          <div class="card-header">
+            <span class="card-name">${card.name}</span>
+            <span class="card-cost">${card.mana_cost || ""}</span>
+          </div>
+          <div class="card-type">${card.type_line}</div>
+          <div class="card-art-block">[ ART BLOCK ]</div>
+          <div class="card-text">${card.oracle_text?.replace(/\n/g, "<br>") || ""}</div>
+        </div>
+      `;
+      container.appendChild(printCard);
+    });
 }
 
 function printCards() {
