@@ -35,6 +35,16 @@ async function searchCard() {
   }
 }
 
+function renderManaCost(cost) {
+  if (!cost) return "";
+
+  return cost.replace(/{(.*?)}/g, (match, symbol) => {
+    const cleanSymbol = symbol.toLowerCase().replace('/', '');
+    return `<img src="https://svgs.scryfall.io/card-symbols/${cleanSymbol}.svg" 
+                 alt="${symbol}" class="mana-icon">`;
+  });
+}
+
 function addToPrint(name) {
   const container = document.getElementById("selected-cards");
 
@@ -49,12 +59,14 @@ function addToPrint(name) {
 
       // Check if the card has power/toughness
       const hasPT = card.power && card.toughness;
+      const manaCostHTML = renderManaCost(card.mana_cost);
+      const hasPT = card.power && card.toughness;
 
       printCard.innerHTML = `
         <div class="card-outline">
           <div class="card-header">
             <span class="card-name">${card.name}</span>
-            <span class="card-cost">${manaCost}</span>
+            <span class="card-cost">${manaCostHTML}</span>
           </div>
           <div class="card-art-block">[  ART BLOCK  ]</div>
           <div class="card-type">${card.type_line}</div>
