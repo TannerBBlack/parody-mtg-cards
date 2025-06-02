@@ -25,7 +25,7 @@ body {
   background-color: white;
   font-family: 'Georgia', serif;
   box-sizing: border-box;
-  padding: 0.2in;
+  padding: 0.15in;
   overflow: hidden;
 }
 
@@ -33,7 +33,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-between;
 }
 
 .card-header {
@@ -41,30 +40,33 @@ body {
   justify-content: space-between;
   font-size: 0.95em;
   font-weight: bold;
+  margin-bottom: 0.05in;
 }
 
 .card-type {
   font-style: italic;
   font-size: 0.85em;
-  margin: 0.05in 0;
+  margin-bottom: 0.05in;
 }
 
 .card-art-block {
+  flex-shrink: 0;
+  height: 1.75in; /* Half of 3.5in */
   border: 1px dashed #999;
-  height: 1.6in;
-  background-color: #f9f9f9;
+  background-color: #f0f0f0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 0.75em;
+  justify-content: center;
   color: #777;
+  font-size: 0.75em;
+  margin-bottom: 0.05in;
 }
 
 .card-text {
   font-size: 0.75em;
-  flex-grow: 1;
   white-space: pre-wrap;
-  margin-top: 0.1in;
+  flex-grow: 1;
+  margin-top: 0.05in;
 }
 
 .card-pt {
@@ -75,5 +77,6 @@ body {
   border: 1px solid black;
   padding: 0.05in 0.15in;
   border-radius: 3px;
-  margin-top: 0.1in;
+  margin-top: 0.05in;
 }
+
