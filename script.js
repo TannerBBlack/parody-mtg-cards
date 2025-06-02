@@ -67,8 +67,8 @@ function addToPrint(name) {
             <span class="card-name">${card.name}</span>
             <span class="card-cost">${card.mana_cost || ""}</span>
           </div>
+          <div class="card-art-block"></div>
           <div class="card-type">${card.type_line}</div>
-          <div class="card-art-block">[ ART BLOCK ]</div>
           <div class="card-text">${(card.oracle_text || "").replace(/\n/g, "<br>")}</div>
           ${
             isCreature
