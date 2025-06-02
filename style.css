@@ -46,14 +46,13 @@ body {
 .card-type {
   font-style: italic;
   font-size: 0.85em;
-  margin: 0.1in 0;
+  margin: 0.05in 0;
 }
 
 .card-art-block {
   border: 1px dashed #999;
   height: 1.6in;
   background-color: #f9f9f9;
-  margin-bottom: 0.1in;
   display: flex;
   justify-content: center;
   align-items: center;
