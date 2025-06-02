@@ -44,23 +44,25 @@ function addToPrint(name) {
   fetch(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(name)}`)
     .then(res => res.json())
     .then(card => {
-      const isCreature = card.power !== null && card.toughness !== null;
+      // Strip curly braces from mana cost
+      const manaCost = card.mana_cost ? card.mana_cost.replace(/[{}]/g, '') : '';
+
+      // Check if the card has power/toughness
+      const hasPT = card.power && card.toughness;
+
       printCard.innerHTML = `
         <div class="card-outline">
           <div class="card-header">
             <span class="card-name">${card.name}</span>
-            <span class="card-cost">${card.mana_cost || ""}</span>
+            <span class="card-cost">${manaCost}</span>
           </div>
           <div class="card-art-block">[  ART BLOCK  ]</div>
           <div class="card-type">${card.type_line}</div>
           <div class="card-text">${(card.oracle_text || "").replace(/\n/g, "<br>")}</div>
-          ${
-            isCreature
-              ? `<div class="card-pt">${card.power} / ${card.toughness}</div>`
-              : ""
-          }
+          ${hasPT ? `<div class="card-pt">${card.power}/${card.toughness}</div>` : ""}
         </div>
       `;
+
       container.appendChild(printCard);
     });
 }
