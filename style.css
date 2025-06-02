@@ -18,60 +18,63 @@ body {
 .minimal-card {
   position: relative;
   display: inline-block;
-  width: 250px;
-  height: 350px;
-  border: 2px solid black;
+  width: 2.5in;
+  height: 3.5in;
+  border: 1px solid #000;
   margin: 10px;
-  padding: 10px;
   background-color: white;
   font-family: 'Georgia', serif;
+  box-sizing: border-box;
+  padding: 0.2in;
+  overflow: hidden;
 }
 
 .card-outline {
   display: flex;
   flex-direction: column;
   height: 100%;
+  justify-content: space-between;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
+  font-size: 0.95em;
   font-weight: bold;
-  font-size: 1.1em;
 }
 
 .card-type {
   font-style: italic;
-  font-size: 0.9em;
-  margin: 5px 0;
+  font-size: 0.85em;
+  margin: 0.1in 0;
 }
 
 .card-art-block {
-  border: 1px dashed #aaa;
-  height: 120px;
-  margin: 8px 0;
+  border: 1px dashed #999;
+  height: 1.6in;
+  background-color: #f9f9f9;
+  margin-bottom: 0.1in;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 0.9em;
-  color: #888;
-  background: #f9f9f9;
+  align-items: center;
+  font-size: 0.75em;
+  color: #777;
 }
 
 .card-text {
-  font-size: 0.85em;
-  white-space: normal;
-  overflow: hidden;
+  font-size: 0.75em;
+  flex-grow: 1;
+  white-space: pre-wrap;
+  margin-top: 0.1in;
 }
 
 .card-pt {
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
+  align-self: flex-end;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 0.8em;
   background-color: white;
-  padding: 2px 6px;
-  border: 1px solid #000;
-  border-radius: 4px;
+  border: 1px solid black;
+  padding: 0.05in 0.15in;
+  border-radius: 3px;
+  margin-top: 0.1in;
 }
