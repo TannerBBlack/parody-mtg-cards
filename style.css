@@ -77,12 +77,12 @@ body {
 
 .card-pt {
   font-weight: bold;
-  font-size: 0.3em;
+  font-size: 0.4em;
   background-color: white;
   border: 1px solid black;
   padding: 0.05in 0.15in;
   border-radius: 3px;
   align-self: flex-end;
   margin-bottom: 0;
-  margin-top: auto;
+  margin-top: 0;
 }
