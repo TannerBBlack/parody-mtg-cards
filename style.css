@@ -70,7 +70,7 @@ body {
   font-size: 0.75em;
   white-space: pre-wrap;
   margin-top: 0.05in;
-  margin-bottom: 0.1in;
+  margin-bottom: 0.025in;
   flex-grow: 1;
   overflow-y: auto;
 }
