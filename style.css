@@ -55,7 +55,7 @@ body {
 
 .card-art-block {
   flex-shrink: 0;
-  height: 1.75in; /* Half of 3.5in */
+  height: 1.25in; /* Half of 3.5in */
   border: 1px dashed #999;
   background-color: #f0f0f0;
   display: flex;
