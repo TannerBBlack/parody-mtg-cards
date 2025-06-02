@@ -33,14 +33,18 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.95em;
   font-weight: bold;
-  margin-bottom: 0.05in;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-type {
@@ -65,18 +69,20 @@ body {
 .card-text {
   font-size: 0.75em;
   white-space: pre-wrap;
-  flex-grow: 1;
   margin-top: 0.05in;
+  margin-bottom: 0.1in;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .card-pt {
-  align-self: flex-end;
   font-weight: bold;
   font-size: 0.8em;
   background-color: white;
   border: 1px solid black;
   padding: 0.05in 0.15in;
   border-radius: 3px;
-  margin-top: 0.05in;
+  align-self: flex-end;
+  margin-bottom: 0;
+  margin-top: auto;
 }
-
