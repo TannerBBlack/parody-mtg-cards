@@ -54,11 +54,7 @@ function addToPrint(name) {
   fetch(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(name)}`)
     .then(res => res.json())
     .then(card => {
-      // Strip curly braces from mana cost
-      const manaCost = card.mana_cost ? card.mana_cost.replace(/[{}]/g, '') : '';
 
-      // Check if the card has power/toughness
-      const hasPT = card.power && card.toughness;
       const manaCostHTML = renderManaCost(card.mana_cost);
       const hasPT = card.power && card.toughness;
 
