@@ -97,7 +97,6 @@ body {
 /* Example colors */
 .mana-w { filter: sepia(1) hue-rotate(40deg) saturate(4) brightness(1.1); }
 .mana-u { filter: sepia(1) hue-rotate(190deg) saturate(4) brightness(1.2); }
-.mana-b { filter: sepia(1) hue-rotate(300deg) saturate(3) brightness(0.9); }
 .mana-r { filter: sepia(1) hue-rotate(0deg) saturate(6) brightness(1.1); }
 .mana-g { filter: sepia(1) hue-rotate(100deg) saturate(4) brightness(1.2); }
 .mana-x { filter: grayscale(0%) brightness(0.8); }
