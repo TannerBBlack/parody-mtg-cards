@@ -1,11 +1,3 @@
-function printSelected() {
-  const selected = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
-    .map(cb => cb.nextElementSibling.innerHTML);
-  const newWindow = window.open();
-  newWindow.document.write('<html><body>' + selected.join('<hr>') + '</body></html>');
-  newWindow.print();
-}
-
 async function searchCards() {
   const input = document.getElementById("card-search").value;
   const display = document.getElementById("card-display");
@@ -56,7 +48,6 @@ async function searchCards() {
 
 function renderManaCost(cost) {
   if (!cost) return "";
-
   return cost.replace(/{(.*?)}/g, (match, symbol) => {
     const cleanSymbol = symbol.toLowerCase().replace('/', '');
     return `<img src="https://svgs.scryfall.io/card-symbols/${cleanSymbol}.svg" 
@@ -73,9 +64,8 @@ function addToPrint(name) {
   fetch(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(name)}`)
     .then(res => res.json())
     .then(card => {
-
       const manaCostHTML = renderManaCost(card.mana_cost);
-      const hasPT = card.power && card.toughness;
+      const hasPT = card.power !== null && card.toughness !== null;
 
       printCard.innerHTML = `
         <div class="card-outline">
@@ -89,12 +79,13 @@ function addToPrint(name) {
           ${hasPT ? `<div class="card-pt">${card.power}/${card.toughness}</div>` : ""}
         </div>
       `;
-
       container.appendChild(printCard);
+    })
+    .catch(err => {
+      console.error("Failed to fetch card:", err);
     });
 }
 
 function printCards() {
   window.print();
 }
-
