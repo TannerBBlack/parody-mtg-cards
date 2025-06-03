@@ -6,32 +6,51 @@ function printSelected() {
   newWindow.print();
 }
 
-const parodyCards = {
-  "lightning bolt": "parody-cards/lightning_bolt_parody.jpg",
-  "birds of paradise": "parody-cards/birds_of_paradise_parody.jpg"
-};
-
-async function searchCard() {
-  const query = document.getElementById("card-search").value;
+async function searchCards() {
+  const input = document.getElementById("card-search").value;
   const display = document.getElementById("card-display");
   display.innerHTML = "Loading...";
 
+  const names = input
+    .split(",")
+    .map(name => name.trim())
+    .filter(name => name.length > 0);
+
+  if (names.length === 0) {
+    display.innerHTML = "No valid card names entered.";
+    return;
+  }
+
+  const identifiers = names.map(name => ({ name }));
+
   try {
-    const res = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(query)}`);
-    const card = await res.json();
+    const res = await fetch("https://api.scryfall.com/cards/collection", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ identifiers })
+    });
 
-    const cardName = card.name.toLowerCase();
-    const parodyImage = parodyCards[cardName];
+    const data = await res.json();
 
-    display.innerHTML = `
-      <h2>${card.name}</h2>
-      <img src="${parodyImage || card.image_uris?.normal}" alt="${card.name}" width="250">
-      <p>${card.type_line} | ${card.mana_cost || ""}</p>
-      <p>${card.oracle_text || ""}</p>
-      <button onclick="addToPrint('${card.name}', '${parodyImage || card.image_uris?.normal}')">Add to Print List</button>
-    `;
+    if (!data.data || data.data.length === 0) {
+      display.innerHTML = "No cards found.";
+      return;
+    }
+
+    display.innerHTML = data.data.map(card => `
+      <div class="card-result">
+        <h2>${card.name}</h2>
+        <img src="${card.image_uris?.normal}" alt="${card.name}" width="250">
+        <p>${card.type_line} | ${card.mana_cost || ""}</p>
+        <p>${card.oracle_text || ""}</p>
+        <button onclick="addToPrint('${card.name}')">Add to Print List</button>
+      </div>
+    `).join("<hr>");
   } catch (err) {
-    display.innerHTML = "Card not found.";
+    console.error(err);
+    display.innerHTML = "Something went wrong fetching cards.";
   }
 }
 
