@@ -49,9 +49,6 @@ async function searchCards() {
 function renderManaCost(cost) {
   if (!cost) return "";
 
-function renderManaCost(cost) {
-  if (!cost) return "";
-
   return cost.replace(/{(.*?)}/g, (match, symbol) => {
     const cleanSymbol = symbol.toLowerCase().replace(/\//g, '');
     return `<img src="card-symbols/${cleanSymbol}.svg" alt="${symbol}" class="mana-icon">`;
