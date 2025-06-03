@@ -1,3 +1,15 @@
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("search-button").addEventListener("click", searchCards);
+  document.getElementById("print-button").addEventListener("click", printCards);
+
+  document.getElementById("card-display").addEventListener("click", function (e) {
+    if (e.target.classList.contains("add-to-print")) {
+      const name = e.target.getAttribute("data-name");
+      if (name) addToPrint(name);
+    }
+  });
+});
+
 async function searchCards() {
   const input = document.getElementById("card-search").value;
   const display = document.getElementById("card-display");
@@ -37,7 +49,7 @@ async function searchCards() {
         <img src="${card.image_uris?.normal}" alt="${card.name}" width="250">
         <p>${card.type_line} | ${renderManaCost(card.mana_cost)}</p>
         <p>${card.oracle_text || ""}</p>
-        <button onclick='addToPrint("${card.name}")'>Add to Print List</button>
+        <button class="add-to-print" data-name="${card.name}">Add to Print List</button>
       </div>
     `).join("<hr>");
   } catch (err) {
