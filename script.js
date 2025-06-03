@@ -63,7 +63,7 @@ function renderManaCost(cost) {
 
   return cost.replace(/{(.*?)}/g, (match, symbol) => {
     const cleanSymbol = symbol.toLowerCase().replace(/\//g, '');
-    return `<img src="card-symbols/${cleanSymbol}.svg" alt="${symbol}" class="mana-icon">`;
+    return `<img src="card-symbols/${cleanSymbol}.svg" alt="${symbol}" class="mana-icon mana-${cleanSymbol}">`;
   });
 }
 
