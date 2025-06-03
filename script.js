@@ -49,11 +49,12 @@ async function searchCards() {
 function renderManaCost(cost) {
   if (!cost) return "";
 
+function renderManaCost(cost) {
+  if (!cost) return "";
+
   return cost.replace(/{(.*?)}/g, (match, symbol) => {
-    const cleanSymbol = symbol.toLowerCase().replace(/[^a-z0-9/]/gi, '');
-    const encodedSymbol = cleanSymbol.replace(/\//g, '');
-    return `<img src="https://svgs.scryfall.io/card-symbols/${encodedSymbol}.svg" 
-                 alt="${symbol}" class="mana-icon" style="height: 1em; vertical-align: middle;">`;
+    const cleanSymbol = symbol.toLowerCase().replace(/\//g, '');
+    return `<img src="card-symbols/${cleanSymbol}.svg" alt="${symbol}" class="mana-icon">`;
   });
 }
 
