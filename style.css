@@ -88,8 +88,7 @@ body {
 }
 
 .mana-icon {
-  height: 16px;
-  width: 16px;
+  height: 1em;
   vertical-align: middle;
-  margin-left: 2px;
+  margin: 0 1px;
 }
