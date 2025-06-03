@@ -107,3 +107,9 @@ body {
 .mana-13, .mana-14, .mana-15, .mana-16 {
   filter: grayscale(0%) brightness(1);
 }
+
+.card-reminder {
+  font-style: italic;
+  font-size: 0.9em;
+  color: #555;
+}
