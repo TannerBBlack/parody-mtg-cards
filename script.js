@@ -78,7 +78,8 @@ function addToPrint(name) {
     .then(card => {
       const manaCostHTML = renderManaCost(card.mana_cost);
       const hasPT = card.power !== null && card.toughness !== null;
-
+      const renderedOracleText = renderManaCost(card.oracle_text || "").replace(/\n/g, "<br>");
+    
       printCard.innerHTML = `
         <div class="card-outline">
           <div class="card-header">
@@ -87,7 +88,7 @@ function addToPrint(name) {
           </div>
           <div class="card-art-block">[  ART BLOCK  ]</div>
           <div class="card-type">${card.type_line}</div>
-          <div class="card-text">${(card.oracle_text || "").replace(/\n/g, "<br>")}</div>
+          <div class="card-text">${renderedOracleText}</div>
           ${hasPT ? `<div class="card-pt">${card.power}/${card.toughness}</div>` : ""}
         </div>
       `;
