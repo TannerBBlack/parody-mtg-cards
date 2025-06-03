@@ -37,7 +37,7 @@ async function searchCards() {
         <img src="${card.image_uris?.normal}" alt="${card.name}" width="250">
         <p>${card.type_line} | ${renderManaCost(card.mana_cost)}</p>
         <p>${card.oracle_text || ""}</p>
-        <button onclick="addToPrint('${card.name}')">Add to Print List</button>
+        <button onclick='addToPrint("${card.name}")'>Add to Print List</button>
       </div>
     `).join("<hr>");
   } catch (err) {
