@@ -104,91 +104,149 @@ function addToPrint(name) {
 }
 
 function printCards() {
+  const cardsContainer = document.getElementById("selected-cards");
+  if (!cardsContainer || cardsContainer.children.length === 0) {
+    alert("No cards in print list.");
+    return;
+  }
+
+  const cardsHTML = cardsContainer.innerHTML;
   const printWindow = window.open("", "_blank");
- const styles = `
-  <style>
-    @page {
-      size: auto;
-      margin: 0;
-    }
 
-    body {
-      margin: 0;
-      padding: 0;
-    }
+  const styles = `
+    <style>
+      @page {
+        size: auto;
+        margin: 0;
+      }
 
-    .print-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(2.5in, 1fr));
-      justify-items: center;
-      gap: 0;
-      padding: 0.2in;
-    }
+      body {
+        margin: 0;
+        padding: 0.25in;
+        background: white;
+      }
 
-    .minimal-card {
-      width: 2.5in;
-      height: 3.5in;
-      border: 1px solid black;
-      padding: 0.1in;
-      box-sizing: border-box;
-      font-family: sans-serif;
-      page-break-inside: avoid;
-      overflow: hidden;
-    }
+      .print-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0;
+      }
 
-    .card-outline {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      font-size: 10pt;
-    }
+      .minimal-card {
+        position: relative;
+        display: inline-block;
+        width: 2.5in;
+        height: 3.5in;
+        border: 1px solid #000;
+        margin: 0.05in;
+        background-color: white;
+        font-family: 'Georgia', serif;
+        box-sizing: border-box;
+        padding: 0.15in;
+        overflow: hidden;
+        page-break-inside: avoid;
+      }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      font-size: 11pt;
-    }
+      .card-outline {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+      }
 
-    .card-art-block {
-      background: #eee;
-      text-align: center;
-      flex-grow: 1;
-      margin: 4px 0;
-      font-size: 9pt;
-    }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.7em;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-    .card-cost img {
-      height: 12pt;
-      vertical-align: middle;
-    }
+      .card-type {
+        font-style: italic;
+        font-size: 0.7em;
+        margin-bottom: 0.05in;
+      }
 
-    .card-text {
-      font-size: 9pt;
-      flex-grow: 1;
-      overflow: hidden;
-    }
+      .card-art-block {
+        flex-shrink: 0;
+        height: 1.45in;
+        border: 1px dashed #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+        font-size: 0.75em;
+        margin-bottom: 0.05in;
+      }
 
-    .card-pt {
-      text-align: right;
-      font-weight: bold;
-      font-size: 10pt;
-    }
+      .card-text {
+        font-size: 0.55em;
+        white-space: pre-wrap;
+        margin-top: 0.05in;
+        margin-bottom: 0.025in;
+        flex-grow: 1;
+        overflow-y: auto;
+      }
 
-    .card-reminder {
-      font-size: 8pt;
-      font-style: italic;
-    }
-  </style>
-`;
+      .card-pt {
+        font-weight: bold;
+        font-size: 0.5em;
+        background-color: white;
+        border: 1px solid black;
+        padding: 0.05in 0.15in;
+        border-radius: 3px;
+        align-self: flex-end;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
 
-  const cardsHTML = document.getElementById("selected-cards").innerHTML;
+      .mana-icon {
+        height: 1em;
+        vertical-align: middle;
+        margin: 0 1px;
+        filter: grayscale(0%) brightness(1.2);
+      }
+
+      .mana-w { filter: sepia(1) hue-rotate(40deg) saturate(4) brightness(1.1); }
+      .mana-u { filter: sepia(1) hue-rotate(190deg) saturate(4) brightness(1.2); }
+      .mana-r { filter: sepia(1) hue-rotate(0deg) saturate(6) brightness(1.1); }
+      .mana-g { filter: sepia(1) hue-rotate(100deg) saturate(4) brightness(1.2); }
+      .mana-x { filter: grayscale(0%) brightness(0.8); }
+
+      .mana-1, .mana-2, .mana-3, .mana-4,
+      .mana-5, .mana-6, .mana-7, .mana-8,
+      .mana-9, .mana-10, .mana-11, .mana-12,
+      .mana-13, .mana-14, .mana-15, .mana-16 {
+        filter: grayscale(0%) brightness(1);
+      }
+
+      .card-reminder {
+        font-style: italic;
+        font-size: 0.8em;
+        color: #555;
+      }
+    </style>
+  `;
+
   printWindow.document.write(`
     <html>
-      <head><title>Print Proxy Cards</title>${styles}</head>
-      <body><div class="print-grid">${cardsHTML}</div></body>
+      <head>
+        <title>Print Cards</title>
+        ${styles}
+      </head>
+      <body>
+        <div class="print-grid">
+          ${cardsHTML}
+        </div>
+      </body>
     </html>
   `);
+
   printWindow.document.close();
   printWindow.focus();
   printWindow.print();
