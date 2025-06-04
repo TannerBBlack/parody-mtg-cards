@@ -67,7 +67,7 @@ body {
 }
 
 .card-text {
-  font-size: 0.65em;
+  font-size: 0.55em;
   white-space: pre-wrap;
   margin-top: 0.05in;
   margin-bottom: 0.025in;
@@ -110,6 +110,6 @@ body {
 
 .card-reminder {
   font-style: italic;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #555;
 }
