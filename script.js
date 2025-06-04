@@ -104,5 +104,92 @@ function addToPrint(name) {
 }
 
 function printCards() {
-  window.print();
+  const printWindow = window.open("", "_blank");
+ const styles = `
+  <style>
+    @page {
+      size: auto;
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .print-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(2.5in, 1fr));
+      justify-items: center;
+      gap: 0;
+      padding: 0.2in;
+    }
+
+    .minimal-card {
+      width: 2.5in;
+      height: 3.5in;
+      border: 1px solid black;
+      padding: 0.1in;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      page-break-inside: avoid;
+      overflow: hidden;
+    }
+
+    .card-outline {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      font-size: 10pt;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 11pt;
+    }
+
+    .card-art-block {
+      background: #eee;
+      text-align: center;
+      flex-grow: 1;
+      margin: 4px 0;
+      font-size: 9pt;
+    }
+
+    .card-cost img {
+      height: 12pt;
+      vertical-align: middle;
+    }
+
+    .card-text {
+      font-size: 9pt;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    .card-pt {
+      text-align: right;
+      font-weight: bold;
+      font-size: 10pt;
+    }
+
+    .card-reminder {
+      font-size: 8pt;
+      font-style: italic;
+    }
+  </style>
+`;
+
+  const cardsHTML = document.getElementById("selected-cards").innerHTML;
+  printWindow.document.write(`
+    <html>
+      <head><title>Print Proxy Cards</title>${styles}</head>
+      <body><div class="print-grid">${cardsHTML}</div></body>
+    </html>
+  `);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
 }
