@@ -81,7 +81,7 @@ function addToPrint(name) {
     .then(res => res.json())
     .then(card => {
       const manaCostHTML = renderManaCost(card.mana_cost);
-      const hasPT = card.power !== null && card.toughness !== null;
+      const hasPT = typeof card.power === "string" && typeof card.toughness === "string";
       const renderedOracleText = formatOracleText(card.oracle_text || "");
 
       printCard.innerHTML = `
