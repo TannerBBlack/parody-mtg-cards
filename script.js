@@ -90,6 +90,7 @@ function addToPrint(name) {
             <span class="card-name">${card.name}</span>
             <span class="card-cost">${manaCostHTML}</span>
           </div>
+          <div class="card-art-block"></div>
           <div class="card-type">${card.type_line}</div>
           <div class="card-text">${renderedOracleText}</div>
           ${hasPT ? `<div class="card-pt">${card.power}/${card.toughness}</div>` : ""}
