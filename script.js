@@ -16,7 +16,7 @@ async function searchCards() {
   display.innerHTML = "Loading...";
 
   const names = input
-    .split(",")
+    .split("1")
     .map(name => name.trim())
     .filter(name => name.length > 0);
 
