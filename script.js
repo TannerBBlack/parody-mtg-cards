@@ -120,30 +120,27 @@ function printCards() {
         margin: 0;
       }
 
-      body {
+      html, body {
         margin: 0;
-        padding: 0.25in;
+        padding: 0;
         background: white;
       }
 
       .print-grid {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: flex-start;
         gap: 0;
       }
 
       .minimal-card {
-        position: relative;
-        display: inline-block;
         width: 2.5in;
         height: 3.5in;
-        border: 1px solid #000;
-        margin: 0.05in;
-        background-color: white;
-        font-family: 'Georgia', serif;
         box-sizing: border-box;
+        border: 1px solid #000;
         padding: 0.15in;
+        font-family: 'Georgia', serif;
         overflow: hidden;
         page-break-inside: avoid;
       }
@@ -201,8 +198,6 @@ function printCards() {
         padding: 0.05in 0.15in;
         border-radius: 3px;
         align-self: flex-end;
-        margin-bottom: 0;
-        margin-top: 0;
       }
 
       .mana-icon {
